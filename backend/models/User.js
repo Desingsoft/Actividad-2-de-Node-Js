@@ -23,6 +23,11 @@ const UsusarioSchema = new moongoose.Schema ({
     sexo: {
         type: String,
         required: true
+    }, 
+
+    birthday: {
+        type: Date,
+        required: true
     }
 
 })

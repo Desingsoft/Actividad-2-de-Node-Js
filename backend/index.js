@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
+const auth = require('./routes/auth.routes')
 
 
 dotenv.config()
@@ -10,11 +11,7 @@ dbConnection()
 
 app.use(express.json())
 
-const controlador = () => {
-    console.log('Controlador funcionando correctamente desde postman')
-}
-
-app.use('/api/auth', controlador)
+app.use('/api/auth', auth)
 
 const PORT = process.env.PORT
 
