@@ -1,23 +1,20 @@
 const express = require('express')
 const app = express()
-const moongoose = require('mongoose')
 const dotenv = require('dotenv')
 
 
 dotenv.config()
 
-const dbConnection = async () => {
-    try {
-        await moongoose.connect('mongodb://127.0.0.1:27017/todo')
-        console.log('Conectado correctamente a la base de datos')
+const dbConnection = require('./config/db') 
+dbConnection()
 
-    } catch (error) {
-        console.error (`Hubo un error conectandose a la base de datos error: ${ error.message }`)
-    }
+app.use(express.json())
 
+const controlador = () => {
+    console.log('Controlador funcionando correctamente desde postman')
 }
 
-    dbConnection()
+app.use('/api/auth', controlador)
 
 const PORT = process.env.PORT
 
