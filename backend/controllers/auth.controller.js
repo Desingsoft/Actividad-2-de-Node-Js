@@ -64,7 +64,7 @@ const login = async (peticion, respuesta) => {
 
         const token = jwt.sign(
             {id: user._id}, 
-            proccess.env.SECRET_KEY,
+            process.env.SECRET_KEY,
             {expiresIn: '1h'}   
         )
 

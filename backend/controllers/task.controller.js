@@ -1,7 +1,7 @@
-const task = require('./../models/Task')
+const Task = require('./../models/Task')
 const crearTarea = async (peticion, respuesta) => {
     try {
-        const task = new task({
+        const task = new Task({
             titulo: peticion.body.titulo,
             usuario: peticion.user.id,
             descripcion: peticion.body.descripcion
@@ -24,7 +24,7 @@ const crearTarea = async (peticion, respuesta) => {
 
 const traerTareas = async (peticion, respuesta) => {
     try {
-        const tasks = await task.find({ 
+        const tasks = await Task.find({ 
             usuario: peticion.user.id 
         })
 
@@ -42,7 +42,7 @@ const traerTareas = async (peticion, respuesta) => {
 
 const traerTareaporId = async (peticion, respuesta) => {
     try {
-        const task = await task.findOne({
+        const task = await Task.findOne({
             _id: peticion.params.id,
             usuario: peticion.user.id
         })
@@ -60,7 +60,7 @@ const traerTareaporId = async (peticion, respuesta) => {
 
 const actualizarTarea = async (peticion, respuesta) => {
     try {
-        const task = await task.findByIdAndUpdate(
+        const task = await Task.findByIdAndUpdate(
             peticion.params.id,
             peticion.body,
             { new: true }
@@ -83,7 +83,7 @@ const eliminarTarea = async (peticion, respuesta) => {
    
 try {
 
-    await task.findByIdAndDelete(peticion.params.id)
+    await Task.findByIdAndDelete(peticion.params.id)
 
     return respuesta.status(200).json({
         msg: 'Tarea eliminada correctamente'
