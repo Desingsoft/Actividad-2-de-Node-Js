@@ -1,4 +1,6 @@
 const User = require('./../models/User')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const registrar = async (peticion, respuesta) => {
    try {
@@ -17,10 +19,13 @@ const registrar = async (peticion, respuesta) => {
         msg: 'El usuario ya existe en la base de datos'
     }) 
 
+    const hashearpassword = await bcrypt.hash(password,10)
+   
+
         user = new User({
         nombre: nombre,
         email: email,
-        password: password,
+        password: hashearpassword,
         edad: edad,
         sexo: sexo,
         birthday: birthday
@@ -47,9 +52,28 @@ const login = async (peticion, respuesta) => {
         const { email, password } = peticion.body
         const user = await User.findOne({ email: email })
 
-        if (!user) return respuesta.status(400).json({
+        if (!user) return respuesta.status(404).json({
             msg: 'El usuario no existe en la base de datos'
         })
+
+        const PasswordsCoinciden = await bcrypt.compare(password, user.password)
+
+        if (!PasswordsCoinciden) return respuesta.status(401).json({
+            msg: 'La contraseña es incorrecta'
+        })
+
+        const token = jwt.sign(
+            {id: user._id}, 
+            proccess.env.SECRET_KEY,
+            {expiresIn: '1h'}   
+        )
+
+        return respuesta.status(200).json({
+            msg: 'Usuario logeado correctamente',
+            token
+        })
+
+
     } catch (error) {
         return respuesta.status(500).json({
             error: `Hubo un error logeando el usuario error: ${ error.message }`

@@ -26,6 +26,9 @@ const loginValidator = [
     body('email')
         .notEmpty().withMessage('El email es obligatorio') 
         .isEmail().withMessage('Debes enviar un email válido'),
+    body('password')
+        .notEmpty().withMessage('La contraseña es obligatoria')
+        
+]
 
-
-module.exports = { registerValidator }
+module.exports = { registerValidator, loginValidator }
