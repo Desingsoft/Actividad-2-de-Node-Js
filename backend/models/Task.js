@@ -9,7 +9,7 @@ const taskSchema = new moongoose.Schema({
         type: Boolean,
         default: false 
     }, 
-    descricion : {
+    descripcion : {
         type: String,
         default: ''
     }, 
