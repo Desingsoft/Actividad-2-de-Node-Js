@@ -1,0 +1,32 @@
+<div class="tareas-container">
+  <header class="page-header">
+    <h1>Mis tareas</h1>
+    <a routerLink="/tareas/nueva" class="btn-primary">+ Nueva tarea</a>
+  </header>
+
+  @if (cargando()) {
+    <p class="cargando">Cargando tareas...</p>
+  } @else if (tareas().length === 0) {
+    <p class="sin-datos">Aún no tienes tareas. ¡Crea la primera! 🎉</p>
+  } @else {
+    <ul class="lista-tareas">
+      @for (tarea of tareas(); track tarea._id) {
+        <li class="tarea-item" [class.completada]="tarea.completado">
+          <label class="tarea-checkbox">
+            <input type="checkbox" [checked]="tarea.completado" (change)="toggleCompletado(tarea)">
+            <span class="tarea-titulo">{{ tarea.titulo }}</span>
+          </label>
+
+          @if (tarea.descricion) {
+            <p class="tarea-descripcion">{{ tarea.descricion }}</p>
+          }
+
+          <div class="tarea-acciones">
+            <a [routerLink]="['/tareas/editar', tarea._id]">Editar</a>
+            <button (click)="eliminar(tarea)" class="btn-danger">Eliminar</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</div>

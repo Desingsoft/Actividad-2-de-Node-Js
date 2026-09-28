@@ -1,0 +1,26 @@
+<div class="form-container">
+  <h1>{{ esEdicion() ? 'Editar tarea' : 'Nueva tarea' }}</h1>
+
+  <form [formGroup]="tareaForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Título</label>
+      <input type="text" formControlName="titulo" placeholder="Ej: Comprar materiales">
+    </div>
+
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea formControlName="descripcion" rows="4" placeholder="Detalles de la tarea (opcional)"></textarea>
+    </div>
+
+    @if (errorMsg()) {
+      <div class="error-alert">{{ errorMsg() }}</div>
+    }
+
+    <div class="form-actions">
+      <button type="button" (click)="router.navigate(['/tareas'])">Cancelar</button>
+      <button type="submit" [disabled]="tareaForm.invalid || cargando()">
+        {{ cargando() ? 'Guardando...' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</div>
