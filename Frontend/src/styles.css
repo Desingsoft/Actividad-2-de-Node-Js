@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+/* ===== Auth (login / registro) ===== */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  padding: 1rem;
+}
+
+.auth-container form {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-container h2 {
+  margin-top: 0;
+}
+
+.auth-container button[type="submit"] {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.auth-container button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-link {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.auth-link a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+/* ===== Formularios genéricos ===== */
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+input, select, textarea {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 0.75rem;
+}
+
+.error-alert {
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+}
+
+.info-alert {
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+}
+
+.exito-alert {
+  background: #f0fdf4;
+  color: #15803d;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+}
+
+/* ===== Contenedor tipo tarjeta para el form de tareas ===== */
+.form-container {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  align-self: flex-start;
+  margin: 0 auto;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.form-actions button[type="button"] {
+  background: #e2e8f0;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-actions button[type="submit"] {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== Página de tareas ===== */
+.tareas-container {
+  width: 100%;
+  max-width: 700px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.cargando, .sin-datos {
+  color: #94a3b8;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.lista-tareas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tarea-item {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #3b82f6;
+}
+
+.tarea-item.completada {
+  border-left-color: #22c55e;
+  opacity: 0.7;
+}
+
+.tarea-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.tarea-checkbox input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.tarea-titulo {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.tarea-item.completada .tarea-titulo {
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+.tarea-descripcion {
+  margin: 0.4rem 0 0 1.7rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.tarea-acciones {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  margin-left: 1.7rem;
+}
+
+.tarea-acciones a {
+  color: #3b82f6;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
